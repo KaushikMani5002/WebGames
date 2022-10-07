@@ -1,0 +1,22 @@
+.cube-container{
+    justify-content: center;
+}
+.cube-row{
+    max-width: max-content;
+}
+.tiles{
+    width: 10rem;
+    height: 10rem;
+    cursor: pointer;
+    // border: 1px solid black;
+}
+.tiles:hover{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+.first-two-rows{
+    border-bottom: 1px solid black;
+}
+
+.first-two-cols{
+    border-right: 1px solid black;
+}
