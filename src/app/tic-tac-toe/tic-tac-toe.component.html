@@ -1,29 +1,53 @@
-<!-- Game UI -->
-<div class="row">
-    <section class="main-section">
-        <div class="container cube-container">
-            <!-- Row 1 -->
-            <div class="row cube-row">
-                <div class="col-4 tiles first-two-rows first-two-cols" id="tile-1" (click)="checkWin(1)"></div>
-                <div class="col-4 tiles first-two-rows first-two-cols" id="tile-2" (click)="checkWin(2)"></div>
-                <div class="col-4 tiles first-two-rows" id="tile-3" (click)="checkWin(3)"></div>
+<div class="row main-row">
+    <!-- Game UI -->
+    <div class="col game-row">
+        <section class="main-section">
+            <div class="container cube-container">
+                <!-- Row 1 -->
+                <div class="row cube-row">
+                    <div class="col-4 tiles first-two-rows first-two-cols" id="tile-1" (click)="checkMarked(1)"></div>
+                    <div class="col-4 tiles first-two-rows first-two-cols" id="tile-2" (click)="checkMarked(2)"></div>
+                    <div class="col-4 tiles first-two-rows" id="tile-3" (click)="checkMarked(3)"></div>
+                </div>
+                <!-- Row 2 -->
+                <div class="row cube-row">
+                    <div class="col-4 tiles first-two-rows first-two-cols" id="tile-4" (click)="checkMarked(4)"></div>
+                    <div class="col-4 tiles first-two-rows first-two-cols" id="tile-5" (click)="checkMarked(5)"></div>
+                    <div class="col-4 tiles first-two-rows" id="tile-6" (click)="checkMarked(6)"></div>
+                </div>
+                <!-- Row 3 -->
+                <div class="row cube-row">
+                    <div class="col-4 tiles first-two-cols" id="tile-7" (click)="checkMarked(7)"></div>
+                    <div class="col-4 tiles first-two-cols" id="tile-8" (click)="checkMarked(8)"></div>
+                    <div class="col-4 tiles" id="tile-9" (click)="checkMarked(9)"></div>
+                </div>
             </div>
-            <!-- Row 2 -->
-            <div class="row cube-row">
-                <div class="col-4 tiles first-two-rows first-two-cols" id="tile-4" (click)="checkWin(4)"></div>
-                <div class="col-4 tiles first-two-rows first-two-cols" id="tile-5" (click)="checkWin(5)"></div>
-                <div class="col-4 tiles first-two-rows" id="tile-6" (click)="checkWin(6)"></div>
-            </div>
-            <!-- Row 3 -->
-            <div class="row cube-row">
-                <div class="col-4 tiles first-two-cols" id="tile-7" (click)="checkWin(7)"></div>
-                <div class="col-4 tiles first-two-cols" id="tile-8" (click)="checkWin(8)"></div>
-                <div class="col-4 tiles" id="tile-9" (click)="checkWin(9)"></div>
+        </section>
+    </div>
+    <!-- Scoreboard UI -->
+    <div class="col scoreboard-row">
+    
+    </div>
+</div>
+
+<!-- Modal -->
+<button id="openmodal" data-toggle="modal" data-target="#victoryModal" hidden>Open</button>
+<button id="closemodal" data-dismiss="modal" hidden>Close</button>
+<div class="modal fade" id="victoryModal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="image">
+                        <img src="{{current_turn === 'red' ? red_avatar : green_avatar}}" width="200">
+                    </div>
+                    <div class="modalFooter">
+                        <div class="col button-holder">
+                            <button type="button" class="play-again" data-dismiss="modal" (click)="playAgain()">Play Again</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-</div>
-<!-- Scoreboard UI -->
-<div class="row">
-
+    </div>
 </div>
