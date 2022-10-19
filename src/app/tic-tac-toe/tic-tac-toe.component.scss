@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'AgentOrange';
+    src: url('../../assets/fonts/AGENTORANGE.TTF');
+}
 .cube-container{
     justify-content: center;
 }
@@ -11,6 +15,8 @@
     background-repeat: no-repeat !important;
     background-position: center !important;
     // border: 1px solid black;
+    font-family: "AgentOrange";
+    font-size: 5rem;
 }
 .tiles:hover{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
@@ -24,17 +30,24 @@
 }
 
 .image{
-    border-radius: 50%;
+    // border-radius: 50%;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.image img{
+    border-radius: 50%;
 }
 
 .modalFooter{
     justify-content: center;
-    margin-top: 1rem;
+    margin: 2rem;
 }
 
 .button-holder{
     max-width: max-content;
+    padding: 1rem;
 }
 
 .play-again{
@@ -43,8 +56,30 @@
     height: 2.5rem;
     width: 10rem;
     border-radius: 10px;
+    margin: 0 1rem;
 }
 
 .game-row{
     max-width: max-content;
+}
+
+.modal-text{
+    font-size: 20px;
+    text-align: center;
+}
+
+.player-type{
+    display: flex;
+}
+
+.game-type-buttons{
+    width: 10rem;
+    height: 3rem;
+    background: none;
+    border: 1px solid;
+    border-radius: 8px;
+}
+
+.players{
+    padding: 1rem;
 }
