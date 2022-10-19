@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'AgentOrange';
+    src: url('../../assets/fonts/AGENTORANGE.TTF');
+}
+@font-face {
+    font-family: 'Western Bang';
+    src: url('../../assets/fonts/WesternBangBang-Regular.ttf');
+}
+.homepage{
+    padding: 10rem;
+    text-align: center;
+    font-family: 'Western Bang';
+    p{
+        font-size: 3rem;
+    }
+    small{
+        font-size: 2rem;
+    }
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-tic-tac-toe',
@@ -12,21 +12,30 @@ export class TicTacToeComponent implements OnInit {
   green_url: string;
   red_avatar: string;
   green_avatar: string;
+  draw: string;
   current_turn: string;
   red_selected: any[];
   green_selected: any[];
-  play_with_pc: boolean = true;
+  two_player: boolean = true;
+  current_player: string;
+  show: boolean = false;
+  @Output() home = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit() {
     this.availableTiles = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     this.red_url = 'assets/images/close.png';
     this.green_url = 'assets/images/virus.png';
-    this.red_avatar = 'assets/images/red-avatar.png';
-    this.green_avatar = 'assets/images/green-avatar.png';
+    this.red_avatar = 'assets/images/player1.svg';
+    this.green_avatar = 'assets/images/player2.svg';
+    this.draw = 'assets/images/draw.svg';
     this.current_turn = 'green';
     this.red_selected = [];
     this.green_selected = [];
+    this.current_player = 'user';
+  }
+  ngAfterViewInit(){
+    document.getElementById('first-modal').click();
   }
 
   // Check Marked
@@ -39,9 +48,6 @@ export class TicTacToeComponent implements OnInit {
       this.current_turn === 'red' ? (this.red_selected.push(value)) : (this.green_selected.push(value));
       this.availableTiles.splice(remove, 1);
       this.markTile(value - 1);
-      // if(this.play_with_pc){
-      //   this.pcAutoPlay();
-      // }
     }
   }
 
@@ -55,8 +61,10 @@ export class TicTacToeComponent implements OnInit {
   addBackground(id) {
     // console.log("addBackground");
     const element = document.getElementById('tile-' + id);
-    const url = this.current_turn === 'green' ? this.green_url : this.red_url;
-    element.style.background = "url(" + url + ")";
+    const text = this.current_turn === 'green' ? 'O' : 'X';
+    element.innerHTML = text;
+    // const url = this.current_turn === 'green' ? this.green_url : this.red_url;
+    // element.style.background = "url(" + url + ")";
   }
 
   //Win Condition
@@ -75,20 +83,64 @@ export class TicTacToeComponent implements OnInit {
     if(win){
       const element = document.getElementById("openmodal");
       element.click(); 
+    }else{
+      if(this.availableTiles.length !== 0){
+        if(this.two_player){
+          this.current_player = this.current_player === 'user' ? 'bot' : 'user';
+          if(this.current_player === 'bot'){
+            this.pcAutoPlay();
+          }
+        }
+      }
+      else{
+        this.current_turn = 'Nobody';
+        document.getElementById('openmodal').click();
+      }
     }
+  }
+
+  // Call ngOnInit() after modal closes
+  callDelayedOnInit(){
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 100);
   }
 
   // Play Again
   playAgain(){
+    this.resetGame();
+    this.callDelayedOnInit();
+  }
+  
+  resetGame(){
     // Reset Game
     for(let i = 1; i < 10; i++){
       const element = document.getElementById('tile-'+i);
-      element.style.background = 'none';
+      element.innerHTML = null;
     }
-    this.ngOnInit();
   }
 
   // PC's Turn
   pcAutoPlay(){
+    const pc_value = Math.floor(Math.random() * this.availableTiles.length);
+    this.checkMarked(this.availableTiles[pc_value]);
+  }
+
+  // Game Mode (Single player or Multiplayer)
+  gameMode(value){
+    this.two_player = value === 1 ? true : false;
+    this.show = true;
+  }
+  changeGame(){
+    document.getElementById('closemodal').click();
+    document.getElementById('first-modal').click();
+    this.resetGame();
+    this.callDelayedOnInit();
+  }
+
+  // Back to Home
+  navigate(){
+    document.getElementById('close-first-modal').click();
+    this.home.emit(0);
   }
 }

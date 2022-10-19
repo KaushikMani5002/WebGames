@@ -9,7 +9,9 @@ export class HomePageComponent implements OnInit {
   // Variables
   currentGame: number;
 
-  constructor() { }
+  constructor() { 
+    this.currentGame = 0;
+  }
 
   ngOnInit() {
   }

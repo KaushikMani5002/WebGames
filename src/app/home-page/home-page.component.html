@@ -1,2 +1,7 @@
 <app-header (game)="changegame($event)"></app-header>
-<app-tic-tac-toe *ngIf="currentGame === 1"></app-tic-tac-toe>
+<app-tic-tac-toe (home)="changegame($event)" *ngIf="currentGame === 1"></app-tic-tac-toe>
+<!-- Home Page -->
+<div class="homepage" *ngIf="currentGame === 0">
+    <p>Welcome to Web Games!</p>
+    <small>This is a Single Page Application made using Angular that allows you to play games developed using Javscript!</small>
+</div>
