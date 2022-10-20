@@ -1,4 +1,4 @@
-<div class="row main-row">
+<div class="main-row">
     <!-- Game UI -->
     <div class="col game-row" *ngIf="show">
         <section class="main-section">
@@ -27,7 +27,7 @@
     <!-- Scoreboard UI -->
     <div class="col scoreboard-row" *ngIf="show">
         <div class="row justify-content-center">
-            <div class="row scoreboard-container">
+            <div class="scoreboard-container">
                 <div class="scorecard-heading">
                     Scorecard
                 </div>
@@ -40,12 +40,10 @@
                             Player Two
                         </div>
                     </div>
-                    <!-- Iterate Scores -->
-                    <div class="sco" style="overflow-y: scroll;">
-                        <div class=" scores" *ngFor="let score of scores">
-                            <div class="col score">{{score[0]}}</div>
-                            <div class="col score">{{score[1]}}</div>
-                        </div>
+                    <!-- Scores -->
+                    <div class="d-flex scores">
+                        <div class="col score">{{p1_score}}</div>
+                        <div class="col score">{{p2_score}}</div>
                     </div>
                     <!-- Current Winner -->
                 </div>
@@ -67,7 +65,7 @@
                         <img src="{{current_turn === 'red' ? red_avatar : current_turn === 'green' ? green_avatar : draw}}" width="200">
                     </div>
                     <div class="modalFooter">
-                        <div class="row button-holder">
+                        <div class="button-holder">
                             <button type="button" class="play-again" data-dismiss="modal" (click)="playAgain()">Play Again</button>
                             <button type="button" class="play-again" data-dismiss="modal" (click)="changeGame()">Change Game Type</button>
                         </div>

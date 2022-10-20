@@ -19,9 +19,16 @@ export class TicTacToeComponent implements OnInit {
   two_player: boolean = true;
   current_player: string;
   show: boolean = false;
-  scores: any = [];
+  p1_score: number;
+  p2_score: number;
   @Output() home = new EventEmitter<number>();
-  constructor() { }
+  constructor() {
+    localStorage.clear();
+    localStorage.setItem('p1_score', '0');
+    localStorage.setItem('p2_score','0');
+    this.p1_score = 0;
+    this.p2_score = 0;
+   }
 
   ngOnInit() {
     this.availableTiles = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -34,7 +41,6 @@ export class TicTacToeComponent implements OnInit {
     this.red_selected = [];
     this.green_selected = [];
     this.current_player = 'user';
-    this.scores.push([0, 0]);
   }
   ngAfterViewInit(){
     document.getElementById('first-modal').click();
@@ -110,8 +116,29 @@ export class TicTacToeComponent implements OnInit {
 
   // Play Again
   playAgain(){
+    const turn = this.current_turn;
     this.resetGame();
     this.callDelayedOnInit();
+    this.incrementScore(turn);
+  }
+
+  incrementScore(turn: string){
+    if(turn === 'red' || turn === 'green'){
+      const lsVar = turn === 'red' ? 'p1_score' : 'p2_score';
+      const val = parseInt(localStorage.getItem(lsVar));
+      localStorage.setItem(lsVar, (val+1).toString());
+      this.getScores();
+    }
+  }
+
+  getScores(){
+    this.p1_score = parseInt(localStorage.getItem('p1_score'));
+    this.p2_score = parseInt(localStorage.getItem('p2_score'));
+  }
+
+  resetScores(){
+    localStorage.setItem('p1_score', '0');
+    localStorage.setItem('p2_score', '0');
   }
   
   resetGame(){
@@ -132,6 +159,8 @@ export class TicTacToeComponent implements OnInit {
   gameMode(value){
     this.two_player = value === 1 ? true : false;
     this.show = true;
+    this.resetScores();
+    this.getScores();
   }
   changeGame(){
     document.getElementById('closemodal').click();
@@ -140,9 +169,7 @@ export class TicTacToeComponent implements OnInit {
     this.callDelayedOnInit();
   }
 
-  // Back to Home
-  // navigate(){
-  //   document.getElementById('close-first-modal').click();
-  //   this.home.emit(0);
-  // }
+  ngOnDestroy(){
+    localStorage.clear();
+  }
 }

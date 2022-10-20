@@ -2,6 +2,10 @@
     font-family: 'AgentOrange';
     src: url('../../assets/fonts/AGENTORANGE.TTF');
 }
+@font-face {
+    font-family: 'OrganicRelief';
+    src: url('../../assets/fonts/Organic\ Relief.ttf');
+}
 .cube-container{
     justify-content: center;
 }
@@ -21,7 +25,21 @@
 .tiles:hover{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
-.first-two-rows{
+.first-two-rows{/* Hide scrollbar for Chrome, Safari and Opera */
+    .sco::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .sco {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+        overflow-y: scroll;
+        height: 14rem;
+        border-bottom: 1px solid black;
+    }
     border-bottom: 1px solid black;
 }
 
@@ -40,7 +58,21 @@
     border-radius: 50%;
 }
 
-.modalFooter{
+.modalFooter{/* Hide scrollbar for Chrome, Safari and Opera */
+    .sco::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .sco {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+        overflow-y: scroll;
+        height: 14rem;
+        border-bottom: 1px solid black;
+    }
     justify-content: center;
     margin: 2rem;
 }
@@ -48,6 +80,7 @@
 .button-holder{
     max-width: max-content;
     padding: 1rem;
+    display: flex;
 }
 
 .play-again{
@@ -85,6 +118,7 @@
 }
 
 .main-row{
+    display: flex;
     padding: 5rem;
 }
 
@@ -111,10 +145,13 @@
     padding: 1rem;
     width: 100%;
     height: max-content;
+    font-family: 'AgentOrange';
+    font-size: 24px;
 }
 
 .scoreboard-players{
     padding: 0.5rem;
+    font-family: 'AgentOrange';
 }
 
 .scoreboard-players:first-of-type{
@@ -128,25 +165,51 @@
     position: sticky;
     top: 0;
 }
-.scores {
-    display: flex;
-}
 
 .score{
     padding: 0.25rem;
-}
-/* Hide scrollbar for Chrome, Safari and Opera */
-.sco::-webkit-scrollbar {
-    display: none;
+    font-family: 'OrganicRelief';
+    font-size: 1.5rem;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.sco {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-    overflow-y: scroll;
-    height: 14rem;
-    border-bottom: 1px solid black;
+.scores{
+    margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 1250px){
+    .main-row{
+        flex-direction: column;
+    }
+    .game-row{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        max-width: none;
+        margin-bottom: 5rem;
+    }
+    .main-section{
+        padding: 0;
+    }
+}
+@media screen and (max-width: 500px){
+    .main-row{
+        padding: 2rem;
+    }
+    .tiles{
+        font-size: 4rem;
+        width: 6rem;
+        height: 6rem;
+    }
+    .player-type{
+        flex-direction: column;
+    }
+    .modal-dialog{
+        justify-content: center;
+    }
+    .button-holder{
+        flex-direction: column;
+    }
+    .button-holder button:first-of-type{
+        margin-bottom: 1rem;
+    }
 }
