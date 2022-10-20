@@ -83,3 +83,70 @@
 .players{
     padding: 1rem;
 }
+
+.main-row{
+    padding: 5rem;
+}
+
+.scoreboard{
+    text-align: center;
+    width: 100%;
+}
+
+.scoreboard-container{
+    width: 25rem;
+    justify-content: flex-start;
+    flex-direction: column;
+    border: 1px solid;
+    border-radius: 4px;
+    height: 25rem;
+}
+
+.main-section{
+    padding: 0 5rem;
+}
+
+.scorecard-heading{
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    height: max-content;
+}
+
+.scoreboard-players{
+    padding: 0.5rem;
+}
+
+.scoreboard-players:first-of-type{
+    border-right: 1px solid black;
+}
+
+.scoreboard-heading{
+    display: flex;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    position: sticky;
+    top: 0;
+}
+.scores {
+    display: flex;
+}
+
+.score{
+    padding: 0.25rem;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sco::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.sco {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    overflow-y: scroll;
+    height: 14rem;
+    border-bottom: 1px solid black;
+}

@@ -19,6 +19,7 @@ export class TicTacToeComponent implements OnInit {
   two_player: boolean = true;
   current_player: string;
   show: boolean = false;
+  scores: any = [];
   @Output() home = new EventEmitter<number>();
   constructor() { }
 
@@ -33,6 +34,7 @@ export class TicTacToeComponent implements OnInit {
     this.red_selected = [];
     this.green_selected = [];
     this.current_player = 'user';
+    this.scores.push([0, 0]);
   }
   ngAfterViewInit(){
     document.getElementById('first-modal').click();
@@ -139,8 +141,8 @@ export class TicTacToeComponent implements OnInit {
   }
 
   // Back to Home
-  navigate(){
-    document.getElementById('close-first-modal').click();
-    this.home.emit(0);
-  }
+  // navigate(){
+  //   document.getElementById('close-first-modal').click();
+  //   this.home.emit(0);
+  // }
 }

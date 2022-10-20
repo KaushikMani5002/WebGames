@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: "**",
-    component: HomePageComponent // Later Change to 404 Component
+    redirectTo: ''
   }
 ];
 
